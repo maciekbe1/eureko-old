@@ -1,15 +1,20 @@
 import "tailwindcss/tailwind.css";
-import Layout from "@/components/Layout";
-import { Provider } from "react-redux";
+import Layout from "@/components/Layouts/Layout";
+
+import { Provider as ReduxProvider } from "react-redux";
+import { SessionProvider } from "next-auth/react";
+
 import { store } from "@/store";
 
 function MyApp({ Component, pageProps }) {
   return (
-    <Provider store={store}>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
-    </Provider>
+    <SessionProvider session={pageProps.session}>
+      <ReduxProvider store={store}>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </ReduxProvider>
+    </SessionProvider>
   );
 }
 

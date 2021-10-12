@@ -1,4 +1,4 @@
-export const fetcher = (url: string, data: Object) =>
+export const fetcher = (url: string, data?: Object) =>
   fetch(window.location.origin + url, {
     method: data ? "POST" : "GET",
     credentials: "include",

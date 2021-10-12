@@ -1,4 +1,4 @@
-import { forwardRef } from "react";
+import { forwardRef, ButtonHTMLAttributes } from "react";
 import { cls } from "@/util/cls";
 
 type Variant = "primary" | "secondary" | "danger";
@@ -6,9 +6,9 @@ type Size = "small" | "normal" | "large";
 type Type = "button" | "submit" | "reset";
 type Ref = HTMLButtonElement;
 
-interface Props {
+interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   children?: React.ReactNode;
-  onClick?: () => void;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
   variant: Variant;
   disabled?: boolean;
   size: Size;
