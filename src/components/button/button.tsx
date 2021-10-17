@@ -2,22 +2,27 @@ import { forwardRef, ButtonHTMLAttributes } from "react";
 
 import classnames from "classnames";
 
-type Variant = "primary" | "secondary" | "danger";
-type Size = "small" | "normal" | "large";
-type Type = "button" | "submit" | "reset";
 type Ref = HTMLButtonElement;
 
-interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
+interface Base extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
-  variant?: Variant;
-  disabled?: boolean;
-  size: Size;
-  type?: Type;
-  pill?: boolean;
   className?: string;
-  outline?: boolean;
+  size: "small" | "normal" | "large";
+  disabled?: boolean;
 }
+
+type Conditional =
+  | {
+      variant: "primary" | "secondary" | "danger";
+      pill?: boolean;
+      outline?: boolean;
+    }
+  | {
+      variant?: "primary" | "secondary" | "danger";
+      pill?: never;
+      outline?: never;
+    };
 
 const classes = {
   base: "focus:outline-none transition ease-in-out duration-300 rounded",
@@ -46,6 +51,7 @@ const classes = {
   },
 };
 
+type Props = Conditional & Base;
 const Button = forwardRef<Ref, Props>(
   (
     {
@@ -86,11 +92,11 @@ const Button = forwardRef<Ref, Props>(
 );
 Button.defaultProps = {
   children: "",
+  type: undefined,
   onClick: undefined,
   variant: undefined,
   disabled: false,
   size: "normal",
-  type: "button",
   className: "",
   pill: false,
   outline: false,
