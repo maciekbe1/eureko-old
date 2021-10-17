@@ -12,7 +12,5 @@ export default {
   },
 };
 
-export const Primary: Story<{ children: React.ReactNode }> = (args) => (
-  <Button {...args} />
-);
+export const Primary: React.FC = (args) => <Button {...args} />;
 Primary.args = { children: "hello" };

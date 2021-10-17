@@ -1,6 +1,5 @@
 // import styles from "../styles/Home.module.css";
 import { signIn, signOut, getSession } from "next-auth/react";
-import { redirect } from "next/dist/server/api-utils";
 
 // import { fetcher } from "../src/util/fetcher";
 

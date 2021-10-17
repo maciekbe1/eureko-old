@@ -1,5 +1,5 @@
-import React, { ReactElement } from "react";
-import { cls } from "@/util/cls";
+import React from "react";
+import classnames from "classnames";
 
 type Align = "center" | "justify" | "left" | "right";
 type Weight = "bold" | "semibold" | "medium" | "normal" | "light";
@@ -42,7 +42,7 @@ const Typography = <E extends React.ElementType = "p">({
   return (
     <Component
       {...props}
-      className={cls(`
+      className={classnames(`
         ${align && classes.align[align]}
         ${weight && classes.weight[weight]}
         ${className}

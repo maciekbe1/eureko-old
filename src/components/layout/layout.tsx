@@ -1,6 +1,6 @@
-import Meta from "@/components/Meta";
-import Sidebar from "@/components/Sidebar";
-import Navbar from "@/components/Navbar";
+import Meta from "@/components/meta";
+import Sidebar from "@/components/sidebar";
+import Header from "@/components/header";
 
 import { useSession } from "next-auth/react";
 
@@ -13,7 +13,7 @@ export default function Layout({ children }: Props) {
   return (
     <>
       <Meta />
-      {session ? <Sidebar /> : <Navbar />}
+      {session ? <Sidebar /> : <Header />}
       {children}
     </>
   );

@@ -1,5 +1,5 @@
 import "tailwindcss/tailwind.css";
-import Layout from "@/components/Layouts/Layout";
+import Layout from "@/components/layout";
 
 import { Provider as ReduxProvider } from "react-redux";
 import { SessionProvider } from "next-auth/react";

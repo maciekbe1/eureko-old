@@ -1,5 +1,5 @@
 import { forwardRef, InputHTMLAttributes } from "react";
-import { cls } from "@/util/cls";
+import classnames from "classnames";
 
 interface Props extends InputHTMLAttributes<HTMLInputElement> {
   placeholder?: string;
@@ -17,9 +17,9 @@ const Input = forwardRef<HTMLInputElement, Props>(
   ({ placeholder, name, onChange, error, className, ...props }, ref) => {
     return (
       <input
-        className={cls(`
+        className={classnames(`
         ${classes.base}
-        ${error ? classes.error : ""}
+        ${error && classes.error}
         ${className}
     `)}
         placeholder={placeholder}

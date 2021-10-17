@@ -1,5 +1,6 @@
 import { forwardRef, ButtonHTMLAttributes } from "react";
-import { cls } from "@/util/cls";
+
+import classnames from "classnames";
 
 type Variant = "primary" | "secondary" | "danger";
 type Size = "small" | "normal" | "large";
@@ -7,9 +8,9 @@ type Type = "button" | "submit" | "reset";
 type Ref = HTMLButtonElement;
 
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
-  children?: React.ReactNode;
+  children: React.ReactNode;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
-  variant: Variant;
+  variant?: Variant;
   disabled?: boolean;
   size: Size;
   type?: Type;
@@ -65,15 +66,15 @@ const Button = forwardRef<Ref, Props>(
       <button
         onClick={onClick}
         ref={ref}
-        className={cls(`
-                ${classes.base}
-                ${classes.size[size] || classes.size.normal}
-                ${!outline ? classes.variant[variant] : ""}
-                ${pill ? classes.pill : ""}
-                ${disabled ? classes.disabled : ""}
-                ${outline ? classes.outline[variant] : ""}
-                ${className}
-            `)}
+        className={classnames(
+          !variant && classes.base,
+          variant && !outline && classes.variant[variant],
+          classes.size[size] || classes.size.normal,
+          pill && classes.pill,
+          disabled && classes.disabled,
+          variant && outline && classes.outline[variant],
+          className
+        )}
         disabled={disabled}
         type={type}
         {...props}
@@ -86,7 +87,7 @@ const Button = forwardRef<Ref, Props>(
 Button.defaultProps = {
   children: "",
   onClick: undefined,
-  variant: "primary",
+  variant: undefined,
   disabled: false,
   size: "normal",
   type: "button",
