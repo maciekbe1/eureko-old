@@ -2,8 +2,8 @@ import { forwardRef, SelectHTMLAttributes } from "react";
 import { mdiChevronDown } from "@mdi/js";
 import Icon from "@mdi/react";
 
-import css from "./select.module.css";
-import cx from "classnames";
+// import css from "./select.module.css";
+import classnames from "classnames";
 
 const Select = forwardRef<HTMLSelectElement, SelectProps>((props, ref) => {
   const { className, options, placeholder, ...rest } = props;
@@ -14,8 +14,8 @@ const Select = forwardRef<HTMLSelectElement, SelectProps>((props, ref) => {
         {...rest}
         ref={ref}
         required
-        className={cx(
-          css.select,
+        className={classnames(
+          // css.select,
           "border-2 w-full font-bold font-mono bg-transparent placeholder-navyBlue-500 transition-colors pl-6 pr-12 py-2.5 hover:border-green-200 rounded-3xl focus:outline-none disabled:border-navyBlue-500 text-navyBlue-200 disabled:font-normal disabled:text-navyBlue-500 border-green-300 disabled:cursor-not-allowed",
           className
         )}

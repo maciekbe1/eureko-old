@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { getCsrfToken, signIn } from "next-auth/react";
+import { getCsrfToken, signIn, getSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import Input from "@/components/input";
 import Button from "@/components/button";
@@ -18,7 +18,7 @@ export default function SignIn({ csrfToken }: any) {
       redirect: false,
     })
       .then((res: any) => {
-        !res.error ? router.replace("/") : setError(true);
+        !res.error ? router.replace("/dashboard") : setError(true);
       })
       .catch((err) => {
         console.error(err);
@@ -52,7 +52,7 @@ export default function SignIn({ csrfToken }: any) {
             error={error}
           />
         </label>
-        <Button type="submit" variant="primary" size="small" pill outline>
+        <Button type="submit" variant="primary" size="small" outline>
           Sign in
         </Button>
       </form>
@@ -61,9 +61,21 @@ export default function SignIn({ csrfToken }: any) {
 }
 
 export async function getServerSideProps(context: any) {
+  const session = await getSession({ req: context.req });
+
+  if (session) {
+    return {
+      redirect: {
+        destination: "/dashboard",
+        permament: false,
+      },
+    };
+  }
   return {
     props: {
       csrfToken: await getCsrfToken(context),
     },
   };
 }
+
+SignIn.layout = "OUT";

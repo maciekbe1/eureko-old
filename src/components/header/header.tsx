@@ -1,23 +1,36 @@
-import React from "react";
-import HeaderHamburger from "./header-hamburger";
-import HeaderLogo from "./header-logo";
-import HeaderMenu from "./header-menu";
-import useHeader from "./useHeaderState";
-import classnames from "classnames";
+import HeaderHamburger from "@/components/header/header-hamburger";
+import HeaderLogo from "@/components/header/header-logo";
+import HeaderNavbar from "./header-navbar";
+import HeaderDrawer from "./header-drawer";
+
+import useHeaderState from "@/components/header/useHeaderState";
+import useDrawerState from "@/components/drawer/useDrawerState";
 
 export default function Header() {
-  const { isVisible, isViewportScrolled, hideMenu, toggle } = useHeader();
-
+  const { isMobile, isViewportScrolled } = useHeaderState();
+  const { toggle, isVisible } = useDrawerState();
   return (
-    <header
-      className={classnames(
-        "fixed top-0 xl:transition-all",
-        isViewportScrolled && "bg-gray-600"
-      )}
-    >
-      <HeaderHamburger toggle={toggle} />
-      <HeaderLogo />
-      <HeaderMenu />
+    <header>
+      <HeaderNavbar
+        className="fixed"
+        isViewportScrolled={isViewportScrolled}
+        isMobile={isMobile}
+      >
+        {isMobile && (
+          <HeaderHamburger
+            toggle={toggle}
+            isViewportScrolled={isViewportScrolled}
+          />
+        )}
+        <HeaderLogo isViewportScrolled={isViewportScrolled} />
+      </HeaderNavbar>
+      <HeaderDrawer
+        isVisible={isVisible}
+        isMobile={isMobile}
+        isViewportScrolled={isViewportScrolled}
+        toggle={toggle}
+      />
+      <div className="mt-16"></div>
     </header>
   );
 }

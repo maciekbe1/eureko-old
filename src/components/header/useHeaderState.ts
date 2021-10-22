@@ -3,11 +3,13 @@ import { useState, useEffect } from "react";
 function useHeaderState() {
   const [isVisible, setVisible] = useState(false);
   const [isViewportScrolled, setViewportScrolled] = useState(false);
-
+  const [isMobile, setIsMobile] = useState(false);
   const updateOnResize = () => {
-    if (window.innerWidth <= 960) {
-      setVisible(false);
+    if (window.innerWidth <= 768) {
+      setIsMobile(true);
       // document.body.style.overflow = "visible";
+    } else {
+      setIsMobile(false);
     }
   };
 
@@ -16,11 +18,12 @@ function useHeaderState() {
     else setViewportScrolled(false);
   };
 
-  const hideMenu = () => setVisible(false);
+  // const hideMenu = () => setVisible(false);
 
   const toggle = () => setVisible(!isVisible);
 
   useEffect(() => {
+    updateOnResize();
     window.addEventListener("scroll", detectScroll);
     return () => {
       window.removeEventListener("scroll", detectScroll);
@@ -34,16 +37,16 @@ function useHeaderState() {
     };
   }, []);
 
-  // useEffect(() => {
-  //   if (isVisible) {
-  //     document.body.style.overflow = "hidden";
-  //   }
-  //   return () => {
-  //     document.body.style.overflow = "visible";
-  //   };
-  // }, [isVisible]);
+  useEffect(() => {
+    if (isVisible) {
+      document.body.style.overflow = "hidden";
+    }
+    return () => {
+      document.body.style.overflow = "visible";
+    };
+  }, [isVisible]);
 
-  return { isVisible, isViewportScrolled, hideMenu, toggle };
+  return { isVisible, isViewportScrolled, toggle, isMobile };
 }
 
 export default useHeaderState;

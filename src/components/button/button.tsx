@@ -8,7 +8,7 @@ interface Base extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
   className?: string;
-  size: "small" | "normal" | "large";
+  size?: "small" | "normal" | "large";
   disabled?: boolean;
 }
 
@@ -73,9 +73,9 @@ const Button = forwardRef<Ref, Props>(
         onClick={onClick}
         ref={ref}
         className={classnames(
-          !variant && classes.base,
+          variant && classes.base,
           variant && !outline && classes.variant[variant],
-          classes.size[size] || classes.size.normal,
+          size && classes.size[size],
           pill && classes.pill,
           disabled && classes.disabled,
           variant && outline && classes.outline[variant],
@@ -96,7 +96,7 @@ Button.defaultProps = {
   onClick: undefined,
   variant: undefined,
   disabled: false,
-  size: "normal",
+  size: undefined,
   className: "",
   pill: false,
   outline: false,

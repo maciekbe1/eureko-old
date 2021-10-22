@@ -2,10 +2,16 @@ module.exports = {
   purge: [],
   darkMode: false, // or 'media' or 'class'
   theme: {
-    extend: {},
+    extend: {
+      screens: {
+        xs: { max: "639px" },
+      },
+    },
   },
   variants: {
-    extend: {},
+    extend: {
+      padding: ["first", "last"],
+    },
   },
   plugins: [],
-}
+};

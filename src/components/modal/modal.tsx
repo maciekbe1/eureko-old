@@ -15,7 +15,7 @@ const Modal = ({ children, activator }: Props) => {
         id="blackOverlay"
         className="absolute w-full h-full bg-black opacity-60"
       ></span>
-      <div className="relative modal lg:w-2/6 sm:w-4/6 mn:w-11/12 mn:top-20">
+      <div className="relative modal lg:w-2/6 sm:w-4/6 xs:w-11/12 xs:top-20">
         {React.cloneElement(children, { setShow })}
       </div>
     </div>

@@ -1,17 +1,17 @@
 // import styles from "../styles/Home.module.css";
-import { signIn, signOut, getSession } from "next-auth/react";
+import { signIn, getSession } from "next-auth/react";
 
 // import { fetcher } from "../src/util/fetcher";
 
 export default function Home({ session }: any) {
-  if (session) {
-    return (
-      <>
-        Signed in as {session?.user?.email} <br />
-        <button onClick={() => signOut()}>Sign out</button>
-      </>
-    );
-  }
+  // if (session) {
+  //   return (
+  //     <>
+  //       Signed in as {session?.user?.email} <br />
+  //       <button onClick={() => signOut()}>Sign out</button>
+  //     </>
+  //   );
+  // }
   return (
     <>
       Not signed in <br />
@@ -23,13 +23,14 @@ export default function Home({ session }: any) {
 export async function getServerSideProps(context: any) {
   const session = await getSession({ req: context.req });
 
-  if (!session) {
+  if (session) {
     return {
       redirect: {
-        destination: "/auth/signin",
+        destination: "/dashboard",
         permament: false,
       },
     };
   }
   return { props: { session } };
 }
+Home.layout = "OUT";
