@@ -1,22 +1,17 @@
-import React from "react";
-import HeaderItem from "@/components/header/header-item";
-import { routes } from "@/constants/header-routes";
-
-export default function HeaderMenu() {
+import classnames from "classnames";
+type Props = {
+  children: React.ReactNode;
+  isMobile: boolean;
+};
+export default function HeaderMenu({ children, isMobile }: Props) {
   return (
-    <nav className="relative z-40 h-full">
-      <ul>
-        {routes.map(
-          (item: { name: string; href: string; icon: string }, index) => (
-            <HeaderItem
-              name={item.name}
-              href={item.href}
-              key={index}
-              icon={item.icon}
-            />
-          )
-        )}
-      </ul>
+    <nav
+      className={classnames({
+        "flex-grow": isMobile,
+        "flex items-center": !isMobile,
+      })}
+    >
+      {children}
     </nav>
   );
 }

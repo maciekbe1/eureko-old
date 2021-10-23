@@ -1502,7 +1502,7 @@
     "schema-utils" "^2.6.5"
     "source-map" "^0.7.3"
 
-"@popperjs/core@^2.0.0", "@popperjs/core@^2.5.4", "@popperjs/core@^2.6.0":
+"@popperjs/core@^2.0.0", "@popperjs/core@^2.10.2", "@popperjs/core@^2.5.4", "@popperjs/core@^2.6.0":
   "integrity" "sha512-IXf3XA7+XyN7CP9gGh/XB0UxVMlvARGEgGXLubFICsUMGz6Q+DU+i4gGlpOxTjKvXjkJDJC8YdqdKkDj9qZHEQ=="
   "resolved" "https://registry.npmjs.org/@popperjs/core/-/core-2.10.2.tgz"
   "version" "2.10.2"
@@ -9404,7 +9404,7 @@
     "@popperjs/core" "^2.5.4"
     "react-popper" "^2.2.4"
 
-"react-popper@^2.2.4":
+"react-popper@^2.2.4", "react-popper@^2.2.5":
   "integrity" "sha512-kxGkS80eQGtLl18+uig1UIf9MKixFSyPxglsgLBxlYnyDf65BiY9B3nZSc6C9XUNDgStROB0fMQlTEz1KxGddw=="
   "resolved" "https://registry.npmjs.org/react-popper/-/react-popper-2.2.5.tgz"
   "version" "2.2.5"

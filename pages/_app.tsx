@@ -6,14 +6,25 @@ import { Provider as ReduxProvider } from "react-redux";
 import { SessionProvider } from "next-auth/react";
 
 import { store } from "@/store";
+import type { AppProps } from "next/app";
+import { NextPage } from "next";
 
-const layouts = {
+const layouts: any = {
   IN: LayoutIn,
   OUT: LayoutOut,
 };
+type Page<P = {}> = NextPage<P> & {
+  layout?: any;
+};
 
-function MyApp({ Component, pageProps }) {
-  const Layout = layouts[Component.layout] || ((children) => <>{children}</>);
+type Props = AppProps & {
+  Component: Page;
+};
+
+function MyApp({ Component, pageProps }: Props) {
+  const Layout =
+    layouts[Component.layout || "OUT"] ||
+    ((children: React.ReactNode) => <>{children}</>);
   return (
     <SessionProvider session={pageProps.session}>
       <ReduxProvider store={store}>

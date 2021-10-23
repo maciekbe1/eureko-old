@@ -1,7 +1,6 @@
 import { getSession } from "next-auth/react";
 
 export default function Dashboard({ session }: any) {
-  console.log(session);
   return <div>dashboard</div>;
 }
 export async function getServerSideProps(context: any) {

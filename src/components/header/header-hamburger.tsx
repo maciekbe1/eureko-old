@@ -2,17 +2,20 @@ import Button from "@/components/button";
 import Icon from "@/components/icon";
 
 interface Props {
-  toggle: () => void;
+  onToggle: () => void;
   isViewportScrolled: boolean;
 }
 
-export default function HeaderHamburger({ toggle, isViewportScrolled }: Props) {
+export default function HeaderHamburger({
+  onToggle,
+  isViewportScrolled,
+}: Props) {
   return (
-    <Button onClick={toggle}>
+    <Button onClick={onToggle}>
       <Icon
         path="mdiMenu"
         size={isViewportScrolled ? 1 : 1.5}
-        color="#00C2FA"
+        className="text-gray-200"
       />
     </Button>
   );

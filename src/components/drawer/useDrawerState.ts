@@ -3,7 +3,8 @@ import { useState, useEffect } from "react";
 function useHeaderState() {
   const [isVisible, setVisible] = useState(false);
 
-  const toggle = () => setVisible(!isVisible);
+  const onToggle = () => setVisible(!isVisible);
+  const onClose = () => setVisible(false);
 
   useEffect(() => {
     if (isVisible) {
@@ -14,7 +15,7 @@ function useHeaderState() {
     };
   }, [isVisible]);
 
-  return { isVisible, toggle };
+  return { isVisible, onToggle, onClose };
 }
 
 export default useHeaderState;

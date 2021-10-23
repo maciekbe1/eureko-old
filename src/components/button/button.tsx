@@ -8,7 +8,7 @@ interface Base extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
   className?: string;
-  size?: "small" | "normal" | "large";
+
   disabled?: boolean;
 }
 
@@ -17,15 +17,17 @@ type Conditional =
       variant: "primary" | "secondary" | "danger";
       pill?: boolean;
       outline?: boolean;
+      size: "small" | "normal" | "large";
     }
   | {
       variant?: "primary" | "secondary" | "danger";
       pill?: never;
       outline?: never;
+      size?: never;
     };
 
 const classes = {
-  base: "focus:outline-none transition ease-in-out duration-300 rounded",
+  base: "focus:outline-none transition ease-in-out duration-500 rounded",
   disabled: "opacity-50 cursor-not-allowed",
   pill: "rounded-full",
   size: {
