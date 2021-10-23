@@ -45,7 +45,7 @@ export default function Header() {
             )}
           </HeaderMenu>
         )}
-        <HeaderNavbarLogin />
+        <HeaderNavbarLogin isViewportScrolled={isViewportScrolled} />
       </HeaderNavbar>
       <HeaderDrawer
         isVisible={isVisible}

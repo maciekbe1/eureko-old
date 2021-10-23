@@ -12,7 +12,7 @@ export default function Layout({ children }: Props) {
     <>
       <Meta />
       <Header />
-      <main className="px-4 mx-auto md:container xs:px-2">{children}</main>
+      <main className="mx-auto lg:px-4 md:container xs:px-2">{children}</main>
     </>
   );
 }

@@ -1,9 +1,14 @@
 import Button from "@/components/button";
 import Input from "@/components/input";
 import Portal from "@/components/portal";
-import React, { useState } from "react";
+import Icon from "@/components/icon";
+import { useState } from "react";
 import { usePopper } from "react-popper";
-export default function HeaderNavbarLogin() {
+export default function HeaderNavbarLogin({
+  isViewportScrolled,
+}: {
+  isViewportScrolled: boolean;
+}) {
   const [isOpen, setIsOpen] = useState(false);
   const [
     referenceElement,
@@ -17,13 +22,17 @@ export default function HeaderNavbarLogin() {
     placement: "bottom-end",
   });
   return (
-    <div>
+    <>
       <Button
         ref={setReferenceElement}
         className="absolute right-4"
         onClick={() => setIsOpen(!isOpen)}
       >
-        login
+        <Icon
+          path="mdiAccountCircle"
+          size={isViewportScrolled ? 1 : 1.5}
+          className="text-gray-200"
+        />
       </Button>
       <Portal>
         {isOpen && (
@@ -46,6 +55,6 @@ export default function HeaderNavbarLogin() {
           </div>
         )}
       </Portal>
-    </div>
+    </>
   );
 }
