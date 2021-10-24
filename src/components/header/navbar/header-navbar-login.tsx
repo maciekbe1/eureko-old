@@ -4,6 +4,8 @@ import Portal from "@/components/portal";
 import Icon from "@/components/icon";
 import { useState } from "react";
 import { usePopper } from "react-popper";
+import classnames from "classnames";
+
 export default function HeaderNavbarLogin({
   isViewportScrolled,
 }: {
@@ -30,8 +32,11 @@ export default function HeaderNavbarLogin({
       >
         <Icon
           path="mdiAccountCircle"
-          size={isViewportScrolled ? 1 : 1.5}
-          className="text-gray-200"
+          size={isViewportScrolled ? 1 : 1.2}
+          className={classnames("duration-500 ease-in-out", {
+            "text-gray-200": !isViewportScrolled,
+            "text-navy-500": isViewportScrolled,
+          })}
         />
       </Button>
       <Portal>
@@ -48,7 +53,7 @@ export default function HeaderNavbarLogin({
               <Button variant="primary" size="small">
                 Zaloguj
               </Button>
-              <Button variant="primary" outline size="small">
+              <Button variant="secondary" outline size="small">
                 Anuluj
               </Button>
             </div>

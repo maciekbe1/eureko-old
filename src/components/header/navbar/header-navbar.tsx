@@ -27,7 +27,7 @@ export default function HeaderNavbar({
     >
       <div
         className={classnames("flex items-center xs:px-2 px-4", {
-          "container mx-auto xs:px-2 px-4 justify-center relative": !isMobile,
+          "container mx-auto justify-center relative": !isMobile,
         })}
       >
         {children}
